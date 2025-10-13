@@ -14,7 +14,7 @@ namespace SpeechToTextApp.Services
 
         private const int SampleRate = 16000;
         private const int Channels = 1;
-        private const uint FramesPerBuffer = (uint)PaStreamCallback.PaFramesPerBufferUnspecified;
+        private const uint FramesPerBuffer = 0; // 0 means let PortAudio choose the buffer size
 
         public AudioService()
         {
@@ -85,14 +85,11 @@ namespace SpeechToTextApp.Services
             Stop();
             try
             {
-                if (PortAudio.IsInitialized)
-                {
-                    PortAudio.Terminate();
-                }
+                PortAudio.Terminate();
             }
             catch (Exception e)
             {
-                 Console.WriteLine($"Error terminating PortAudio: {e.Message}");
+                Console.WriteLine($"Error terminating PortAudio: {e.Message}");
             }
         }
     }

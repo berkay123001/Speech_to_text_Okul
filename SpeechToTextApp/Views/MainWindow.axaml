@@ -3,35 +3,211 @@
         xmlns:vm="using:SpeechToTextApp.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="720"
         x:Class="SpeechToTextApp.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Speech-to-Text App">
+        Title="SpeechFlow"
+        WindowStartupLocation="CenterScreen"
+        ExtendClientAreaToDecorationsHint="True"
+        Background="Transparent">
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <StackPanel Spacing="10" Margin="20" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock Text="Recognized Text:" FontWeight="Bold" FontSize="16"/>
-        <ScrollViewer Height="200" Width="600" BorderBrush="Gray" BorderThickness="1">
-            <TextBlock Text="{Binding RecognizedText}"
-                       TextWrapping="Wrap"
-                       Margin="5"
-                       MinWidth="580"/>
-        </ScrollViewer>
+    <Panel>
+        <ExperimentalAcrylicBorder IsHitTestVisible="False">
+            <ExperimentalAcrylicBorder.Material>
+                <ExperimentalAcrylicMaterial
+                    BackgroundSource="Digger"
+                    TintColor="{DynamicResource SystemAccentColor}"
+                    TintOpacity="0.8"
+                    MaterialOpacity="0.65" />
+            </ExperimentalAcrylicBorder.Material>
+        </ExperimentalAcrylicBorder>
 
-        <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center" Margin="0,10,0,0">
-            <Button Content="🎙️ Start Listening"
+        <Grid RowDefinitions="*,Auto,Auto,Auto" Margin="40">
+            <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding TranscriptWords}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"
+                                       FontSize="28"
+                                       Foreground="{DynamicResource ThemeForegroundBrush}"
+                                       Margin="5"
+                                       Classes="fade-in-up"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+
+            <Canvas Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="100"
+                    Height="50"
+                    IsVisible="{Binding IsListening}">
+                <Rectangle Fill="{DynamicResource ThemeForegroundBrush}" Width="10" Height="50" Canvas.Left="0" RenderTransformOrigin="50%,50%" Classes.listening="{Binding IsListening}">
+                    <Rectangle.RenderTransform>
+                        <ScaleTransform ScaleY="0.2" />
+                    </Rectangle.RenderTransform>
+                    <Rectangle.Styles>
+                        <Style Selector="Rectangle.listening">
+                            <Style.Animations>
+                                <Animation Duration="0:0:1.2" IterationCount="Infinite" PlaybackDirection="Alternate">
+                                    <KeyFrame Cue="0%"><Setter Property="ScaleTransform.ScaleY" Value="0.3"/></KeyFrame>
+                                    <KeyFrame Cue="50%"><Setter Property="ScaleTransform.ScaleY" Value="1.0"/></KeyFrame>
+                                    <KeyFrame Cue="100%"><Setter Property="ScaleTransform.ScaleY" Value="0.3"/></KeyFrame>
+                                </Animation>
+                            </Style.Animations>
+                        </Style>
+                    </Rectangle.Styles>
+                </Rectangle>
+                <Rectangle Fill="{DynamicResource ThemeForegroundBrush}" Width="10" Height="50" Canvas.Left="20" RenderTransformOrigin="50%,50%" Classes.listening="{Binding IsListening}">
+                    <Rectangle.RenderTransform>
+                        <ScaleTransform ScaleY="0.2" />
+                    </Rectangle.RenderTransform>
+                    <Rectangle.Styles>
+                        <Style Selector="Rectangle.listening">
+                            <Style.Animations>
+                                <Animation Duration="0:0:1.4" IterationCount="Infinite" PlaybackDirection="Alternate">
+                                    <KeyFrame Cue="0%"><Setter Property="ScaleTransform.ScaleY" Value="0.4"/></KeyFrame>
+                                    <KeyFrame Cue="50%"><Setter Property="ScaleTransform.ScaleY" Value="0.8"/></KeyFrame>
+                                    <KeyFrame Cue="100%"><Setter Property="ScaleTransform.ScaleY" Value="0.4"/></KeyFrame>
+                                </Animation>
+                            </Style.Animations>
+                        </Style>
+                    </Rectangle.Styles>
+                </Rectangle>
+                <Rectangle Fill="{DynamicResource ThemeForegroundBrush}" Width="10" Height="50" Canvas.Left="40" RenderTransformOrigin="50%,50%" Classes.listening="{Binding IsListening}">
+                    <Rectangle.RenderTransform>
+                        <ScaleTransform ScaleY="0.2" />
+                    </Rectangle.RenderTransform>
+                    <Rectangle.Styles>
+                        <Style Selector="Rectangle.listening">
+                            <Style.Animations>
+                                <Animation Duration="0:0:1.0" IterationCount="Infinite" PlaybackDirection="Alternate">
+                                    <KeyFrame Cue="0%"><Setter Property="ScaleTransform.ScaleY" Value="0.2"/></KeyFrame>
+                                    <KeyFrame Cue="50%"><Setter Property="ScaleTransform.ScaleY" Value="0.9"/></KeyFrame>
+                                    <KeyFrame Cue="100%"><Setter Property="ScaleTransform.ScaleY" Value="0.2"/></KeyFrame>
+                                </Animation>
+                            </Style.Animations>
+                        </Style>
+                    </Rectangle.Styles>
+                </Rectangle>
+                <Rectangle Fill="{DynamicResource ThemeForegroundBrush}" Width="10" Height="50" Canvas.Left="60" RenderTransformOrigin="50%,50%" Classes.listening="{Binding IsListening}">
+                    <Rectangle.RenderTransform>
+                        <ScaleTransform ScaleY="0.2" />
+                    </Rectangle.RenderTransform>
+                    <Rectangle.Styles>
+                        <Style Selector="Rectangle.listening">
+                            <Style.Animations>
+                                <Animation Duration="0:0:1.6" IterationCount="Infinite" PlaybackDirection="Alternate">
+                                    <KeyFrame Cue="0%"><Setter Property="ScaleTransform.ScaleY" Value="0.5"/></KeyFrame>
+                                    <KeyFrame Cue="50%"><Setter Property="ScaleTransform.ScaleY" Value="0.7"/></KeyFrame>
+                                    <KeyFrame Cue="100%"><Setter Property="ScaleTransform.ScaleY" Value="0.5"/></KeyFrame>
+                                </Animation>
+                            </Style.Animations>
+                        </Style>
+                    </Rectangle.Styles>
+                </Rectangle>
+                 <Rectangle Fill="{DynamicResource ThemeForegroundBrush}" Width="10" Height="50" Canvas.Left="80" RenderTransformOrigin="50%,50%" Classes.listening="{Binding IsListening}">
+                    <Rectangle.RenderTransform>
+                        <ScaleTransform ScaleY="0.2" />
+                    </Rectangle.RenderTransform>
+                    <Rectangle.Styles>
+                        <Style Selector="Rectangle.listening">
+                            <Style.Animations>
+                                <Animation Duration="0:0:1.3" IterationCount="Infinite" PlaybackDirection="Alternate">
+                                    <KeyFrame Cue="0%"><Setter Property="ScaleTransform.ScaleY" Value="0.3"/></KeyFrame>
+                                    <KeyFrame Cue="50%"><Setter Property="ScaleTransform.ScaleY" Value="0.9"/></KeyFrame>
+                                    <KeyFrame Cue="100%"><Setter Property="ScaleTransform.ScaleY" Value="0.3"/></KeyFrame>
+                                </Animation>
+                            </Style.Animations>
+                        </Style>
+                    </Rectangle.Styles>
+                </Rectangle>
+            </Canvas>
+
+            <Ellipse Grid.Row="2"
+                     Width="120"
+                     Height="120"
+                     Fill="{DynamicResource SystemAccentColor}"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     Margin="20"
+                     Classes.listening="{Binding IsListening}"
+                     RenderTransformOrigin="50%,50%">
+                <Ellipse.RenderTransform>
+                    <ScaleTransform ScaleX="1.0" ScaleY="1.0" />
+                </Ellipse.RenderTransform>
+                <Ellipse.Styles>
+                    <Style Selector="Ellipse">
+                        <Setter Property="Opacity" Value="0.7"/>
+                        <Setter Property="Transitions">
+                            <Transitions>
+                                <DoubleTransition Property="Opacity" Duration="0:0:0.5" Easing="CubicEaseInOut"/>
+                                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.5" Easing="CubicEaseInOut"/>
+                            </Transitions>
+                        </Setter>
+                    </Style>
+                    <Style Selector="Ellipse:pointerover">
+                        <Setter Property="Opacity" Value="1.0"/>
+                    </Style>
+                    <Style Selector="Ellipse.listening">
+                        <Setter Property="RenderTransform" Value="scale(1.1, 1.1)"/>
+                        <Style.Animations>
+                            <Animation Duration="0:0:1.5" IterationCount="Infinite" PlaybackDirection="Alternate">
+                                <KeyFrame Cue="0%">
+                                    <Setter Property="Opacity" Value="0.8"/>
+                                </KeyFrame>
+                                <KeyFrame Cue="100%">
+                                    <Setter Property="Opacity" Value="1.0"/>
+                                </KeyFrame>
+                            </Animation>
+                        </Style.Animations>
+                    </Style>
+                </Ellipse.Styles>
+            </Ellipse>
+
+            <Button Grid.Row="2"
+                    Content="🎙️"
                     Command="{Binding StartListeningCommand}"
-                    IsEnabled="{Binding !IsListening}"
-                    Width="150" Height="40"/>
-            <Button Content="🛑 Stop"
-                    Command="{Binding StopListeningCommand}"
-                    IsEnabled="{Binding IsListening}"
-                    Width="150" Height="40"/>
-        </StackPanel>
-    </StackPanel>
+                    IsVisible="{Binding !IsListening}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="100" Height="100"
+                    FontSize="48"
+                    CornerRadius="50"
+                    BorderThickness="0"
+                    Background="Transparent"
+                    Foreground="{DynamicResource ThemeForegroundBrush}"/>
 
+            <Button Grid.Row="2"
+                    Content="🛑"
+                    Command="{Binding StopListeningCommand}"
+                    IsVisible="{Binding IsListening}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="100" Height="100"
+                    FontSize="48"
+                    CornerRadius="50"
+                    BorderThickness="0"
+                    Background="Transparent"
+                    Foreground="{DynamicResource ThemeForegroundBrush}"/>
+
+            <Button Grid.Row="3"
+                    Content="Clear Transcript"
+                    Command="{Binding ClearTranscriptCommand}"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Margin="10"/>
+        </Grid>
+    </Panel>
 </Window>

@@ -1,0 +1,48 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:SpeechToTextApp.ViewModels"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="SpeechToTextApp.Views.WelcomeView"
+        x:DataType="vm:WelcomeViewModel"
+        SystemDecorations="None"
+        ExtendClientAreaToDecorationsHint="True"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        Title="Welcome to SpeechFlow">
+
+    <Design.DataContext>
+        <vm:WelcomeViewModel/>
+    </Design.DataContext>
+
+    <Panel>
+        <ExperimentalAcrylicBorder IsHitTestVisible="False">
+            <ExperimentalAcrylicBorder.Material>
+                <ExperimentalAcrylicMaterial
+                    BackgroundSource="Digger"
+                    TintColor="Black"
+                    TintOpacity="0.85"
+                    MaterialOpacity="0.65" />
+            </ExperimentalAcrylicBorder.Material>
+        </ExperimentalAcrylicBorder>
+
+        <TextBlock Name="WelcomeTextBlock"
+                   Text="{Binding WelcomeText}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="24"
+                   Foreground="White">
+            <TextBlock.Styles>
+                <Style Selector="TextBlock">
+                    <Setter Property="Opacity" Value="0"/>
+                </Style>
+            </TextBlock.Styles>
+            <TextBlock.Transitions>
+                <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="0:0:1.5" Easing="CubicEaseIn"/>
+                </Transitions>
+            </TextBlock.Transitions>
+        </TextBlock>
+    </Panel>
+</Window>

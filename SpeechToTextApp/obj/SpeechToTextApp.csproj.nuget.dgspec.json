@@ -67,10 +67,6 @@
               "target": "Package",
               "version": "[8.2.1, )"
             },
-            "NAudio": {
-              "target": "Package",
-              "version": "[2.2.1, )"
-            },
             "PortAudioSharp": {
               "target": "Package",
               "version": "[0.3.0, )"

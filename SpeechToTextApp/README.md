@@ -1,18 +1,26 @@
-# Speech-to-Text Avalonia App for Linux
+# SpeechFlow - Cinematic Speech-to-Text Avalonia App for Linux
 
-This is a simple Speech-to-Text application built with C# and AvaloniaUI, designed to be compatible with Linux. It uses the Vosk speech recognition toolkit for offline speech-to-text conversion.
+This is a premium, Apple-style Speech-to-Text application built with C# and AvaloniaUI, designed to be compatible with Linux. It uses the Vosk speech recognition toolkit for offline speech-to-text conversion and features a cinematic, animated interface.
 
-## Features
+## 🪄 Features
 
-- Real-time speech-to-text transcription.
-- Simple and modern UI using Avalonia.
-- Automatic download of the Vosk speech model on first run.
-- Cross-platform (should also work on Windows and macOS).
+-   **Animated Welcome Screen:** A smooth, blurred fade-in welcome screen with text animation.
+-   **Cinematic Main Interface:** A central circular microphone button with a glowing pulse animation when recording, and an animated "Listening..." indicator.
+-   **Dynamic Waveform Visualization:** A waveform visualization that reacts to microphone input.
+-   **Continuous Transcript Display:** Recognized text is continuously appended, with each new word appearing with a typewriter animation and a subtle fade-in and upward motion.
+-   **Automatic Light/Dark Mode:** The application automatically adapts to your system's theme.
+-   **Responsive Design:** The UI is fully responsive for screens from 720p to 1440p.
+
+## UI Preview
+
+![SpeechFlow UI Preview](https://i.imgur.com/YOUR_GIF_URL.gif)
+
+*Note: Replace the URL above with a GIF or screenshot of the new UI.*
 
 ## Prerequisites
 
-- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
-- A working microphone.
+-   [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+-   A working microphone.
 
 ## How to Run
 
@@ -28,7 +36,7 @@ This is a simple Speech-to-Text application built with C# and AvaloniaUI, design
     ```
 
 3.  **Model Download:**
-    On the first run, the application will automatically download the required Vosk English model (approx. 40MB). Please wait for the download and extraction to complete. The UI will show the progress.
+    On the first run, the application will automatically download the required Vosk English model (approx. 40MB). Please wait for the download and extraction to complete.
 
 4.  **Start Listening:**
-    Once the model is ready, click the "🎙️ Start Listening" button and start speaking. The recognized text will appear in the text box.
+    Once the model is ready, click the microphone button and start speaking. The recognized text will appear on the screen with cinematic animations.

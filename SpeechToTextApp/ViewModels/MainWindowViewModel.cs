@@ -1,6 +1,8 @@
 using System;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Avalonia.Threading;
@@ -13,11 +15,11 @@ namespace SpeechToTextApp.ViewModels
     public partial class MainWindowViewModel : ViewModelBase
     {
         [ObservableProperty]
-        private string _recognizedText = "Initializing...";
-
-        [ObservableProperty]
         private bool _isListening;
 
+        public ObservableCollection<string> TranscriptWords { get; } = new();
+
+        private bool _initialMessageCleared = false;
         private AudioService? _audioService;
         private SpeechService? _speechService;
 
@@ -26,7 +28,6 @@ namespace SpeechToTextApp.ViewModels
 
         public MainWindowViewModel()
         {
-            // Fire-and-forget async initialization.
             _ = InitializeAsync();
         }
 
@@ -44,19 +45,17 @@ namespace SpeechToTextApp.ViewModels
 
                 _audioService.DataAvailable += OnAudioDataAvailable;
                 _speechService.RecognitionResult += OnRecognitionResult;
-
-                RecognizedText = "Ready to listen.";
             }
             catch (Exception e)
             {
-                RecognizedText = $"Error initializing services: {e.Message}";
+                TranscriptWords.Add($"Error initializing services: {e.Message}");
             }
         }
 
         private async Task DownloadAndExtractModelAsync()
         {
             var zipPath = Path.Combine(Path.GetTempPath(), "vosk-model.zip");
-            RecognizedText = "Downloading model, please wait...";
+            TranscriptWords.Add("Downloading model, please wait...");
 
             using (var client = new HttpClient())
             {
@@ -68,7 +67,8 @@ namespace SpeechToTextApp.ViewModels
                 }
             }
 
-            RecognizedText = "Extracting model...";
+            TranscriptWords.Clear();
+            TranscriptWords.Add("Extracting model...");
 
             string tempExtractPath = Path.Combine(Path.GetTempPath(), "vosk-model-extracted");
             if (Directory.Exists(tempExtractPath))
@@ -89,6 +89,8 @@ namespace SpeechToTextApp.ViewModels
 
             File.Delete(zipPath);
             Directory.Delete(tempExtractPath, true);
+            TranscriptWords.Clear();
+            TranscriptWords.Add("Ready to listen.");
         }
 
         [RelayCommand]
@@ -115,10 +117,37 @@ namespace SpeechToTextApp.ViewModels
 
         private void OnRecognitionResult(string result)
         {
-            Dispatcher.UIThread.Post(() =>
+            Dispatcher.UIThread.Post(async () =>
             {
-                RecognizedText = result;
+                if (!_initialMessageCleared && TranscriptWords.Count > 0)
+                {
+                    TranscriptWords.Clear();
+                    _initialMessageCleared = true;
+                }
+
+                var words = result.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                foreach (var word in words)
+                {
+                    if (string.IsNullOrWhiteSpace(word)) continue;
+
+                    TranscriptWords.Add("");
+                    var index = TranscriptWords.Count - 1;
+
+                    foreach (var character in word)
+                    {
+                        TranscriptWords[index] += character;
+                        await Task.Delay(50); // Adjust delay for typing speed
+                    }
+                    TranscriptWords[index] += " "; // Add space after word
+                }
             });
+        }
+
+        [RelayCommand]
+        private void ClearTranscript()
+        {
+            TranscriptWords.Clear();
+            _initialMessageCleared = true; // Consider a clear as user interaction
         }
     }
 }

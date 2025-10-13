@@ -473,6 +473,19 @@
           "lib/net5.0/MicroCom.Runtime.dll": {}
         }
       },
+      "Microsoft.Extensions.Logging.Abstractions/3.1.4": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.NETCore.Platforms/3.1.0": {
         "type": "package",
         "compile": {
@@ -506,6 +519,22 @@
           "runtimes/win/lib/netstandard2.0/Microsoft.Win32.Registry.dll": {
             "assetType": "runtime",
             "rid": "win"
+          }
+        }
+      },
+      "NativeLibraryManager/1.0.23": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Logging.Abstractions": "3.1.4"
+        },
+        "compile": {
+          "lib/netstandard2.0/NativeLibraryManager.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/NativeLibraryManager.dll": {
+            "related": ".xml"
           }
         }
       },
@@ -606,6 +635,18 @@
           "lib/netstandard2.0/NAudio.WinMM.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "PortAudioSharp/0.3.0": {
+        "type": "package",
+        "dependencies": {
+          "NativeLibraryManager": "1.0.23"
+        },
+        "compile": {
+          "lib/netstandard2.0/PortAudioSharp.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/PortAudioSharp.dll": {}
         }
       },
       "SkiaSharp/2.88.9": {
@@ -1423,6 +1464,20 @@
         "microcom.runtime.nuspec"
       ]
     },
+    "Microsoft.Extensions.Logging.Abstractions/3.1.4": {
+      "sha512": "JNPxhw2XwhjfGFyIkA5eBfzUDPNpa6Q50HJ2F6lCAMoSa1GquAktTrl4PhEyTYFNmu09B0E90WhYsUb3kmSkOA==",
+      "type": "package",
+      "path": "microsoft.extensions.logging.abstractions/3.1.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.xml",
+        "microsoft.extensions.logging.abstractions.3.1.4.nupkg.sha512",
+        "microsoft.extensions.logging.abstractions.nuspec"
+      ]
+    },
     "Microsoft.NETCore.Platforms/3.1.0": {
       "sha512": "z7aeg8oHln2CuNulfhiLYxCVMPEwBl3rzicjvIX+4sUuCwvXw5oXQEtbiU2c0z4qYL5L3Kmx0mMA/+t/SbY67w==",
       "type": "package",
@@ -1485,6 +1540,19 @@
         "runtimes/win/lib/netstandard2.0/Microsoft.Win32.Registry.xml",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "NativeLibraryManager/1.0.23": {
+      "sha512": "QINOsTAY2nN+PW8Lomg0VKEQjN72dqqZ1fTfGyIi1skbSzLMQJOrzH5bBq3b2NCeOhKUjYkXS7ByBtvulmMmTQ==",
+      "type": "package",
+      "path": "nativelibrarymanager/1.0.23",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/NativeLibraryManager.dll",
+        "lib/netstandard2.0/NativeLibraryManager.xml",
+        "nativelibrarymanager.1.0.23.nupkg.sha512",
+        "nativelibrarymanager.nuspec"
       ]
     },
     "NAudio/2.2.1": {
@@ -1579,6 +1647,18 @@
         "naudio-icon.png",
         "naudio.winmm.2.2.1.nupkg.sha512",
         "naudio.winmm.nuspec"
+      ]
+    },
+    "PortAudioSharp/0.3.0": {
+      "sha512": "9hEuEu8CKX0dcmzj26NU+wba5CkSnMpG1qX6/iarlf9gQVC+3ffE41LDLsne3H/Ki17XGNOry4D1ly/FCg2KPw==",
+      "type": "package",
+      "path": "portaudiosharp/0.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/PortAudioSharp.dll",
+        "portaudiosharp.0.3.0.nupkg.sha512",
+        "portaudiosharp.nuspec"
       ]
     },
     "SkiaSharp/2.88.9": {
@@ -1932,6 +2012,7 @@
       "Avalonia.Themes.Fluent >= 11.3.6",
       "CommunityToolkit.Mvvm >= 8.2.1",
       "NAudio >= 2.2.1",
+      "PortAudioSharp >= 0.3.0",
       "Vosk >= 0.3.38"
     ]
   },
@@ -1966,6 +2047,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -2000,6 +2086,10 @@
             "target": "Package",
             "version": "[2.2.1, )"
           },
+          "PortAudioSharp": {
+            "target": "Package",
+            "version": "[0.3.0, )"
+          },
           "Vosk": {
             "target": "Package",
             "version": "[0.3.38, )"
@@ -2021,7 +2111,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.120/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.414/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

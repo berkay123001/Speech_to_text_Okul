@@ -24,7 +24,7 @@
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
-    <PackageReference Include="NAudio" Version="2.2.1" />
+    <PackageReference Include="PortAudioSharp" Version="0.3.0" />
     <PackageReference Include="Vosk" Version="0.3.38" />
   </ItemGroup>
 </Project>

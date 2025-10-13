@@ -32,6 +32,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -66,6 +71,10 @@
               "target": "Package",
               "version": "[2.2.1, )"
             },
+            "PortAudioSharp": {
+              "target": "Package",
+              "version": "[0.3.0, )"
+            },
             "Vosk": {
               "target": "Package",
               "version": "[0.3.38, )"
@@ -87,7 +96,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.120/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.414/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

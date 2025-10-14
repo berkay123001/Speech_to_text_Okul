@@ -28,7 +28,7 @@
         </ExperimentalAcrylicBorder>
 
         <TextBlock Name="WelcomeTextBlock"
-                   Text="{Binding WelcomeText}"
+                   Text="Merhaba, uygulamaya hoş geldiniz."
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    FontSize="24"
@@ -40,7 +40,7 @@
             </TextBlock.Styles>
             <TextBlock.Transitions>
                 <Transitions>
-                    <DoubleTransition Property="Opacity" Duration="0:0:1.5" Easing="CubicEaseIn"/>
+                    <DoubleTransition Property="Opacity" Duration="0:0:1.5" Easing="EaseInOutCubic"/>
                 </Transitions>
             </TextBlock.Transitions>
         </TextBlock>

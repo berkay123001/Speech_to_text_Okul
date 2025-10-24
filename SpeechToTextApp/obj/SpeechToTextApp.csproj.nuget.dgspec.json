@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/app/SpeechToTextApp/SpeechToTextApp.csproj": {}
+    "/home/berkayhsrt/SPEECH_TO_TEXT/Speech_to_text_Okul/SpeechToTextApp/SpeechToTextApp.csproj": {}
   },
   "projects": {
-    "/app/SpeechToTextApp/SpeechToTextApp.csproj": {
+    "/home/berkayhsrt/SPEECH_TO_TEXT/Speech_to_text_Okul/SpeechToTextApp/SpeechToTextApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/app/SpeechToTextApp/SpeechToTextApp.csproj",
+        "projectUniqueName": "/home/berkayhsrt/SPEECH_TO_TEXT/Speech_to_text_Okul/SpeechToTextApp/SpeechToTextApp.csproj",
         "projectName": "SpeechToTextApp",
-        "projectPath": "/app/SpeechToTextApp/SpeechToTextApp.csproj",
-        "packagesPath": "/home/jules/.nuget/packages/",
-        "outputPath": "/app/SpeechToTextApp/obj/",
+        "projectPath": "/home/berkayhsrt/SPEECH_TO_TEXT/Speech_to_text_Okul/SpeechToTextApp/SpeechToTextApp.csproj",
+        "packagesPath": "/home/berkayhsrt/.nuget/packages/",
+        "outputPath": "/home/berkayhsrt/SPEECH_TO_TEXT/Speech_to_text_Okul/SpeechToTextApp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/jules/.nuget/NuGet/NuGet.Config"
+          "/home/berkayhsrt/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -32,11 +32,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -67,10 +62,6 @@
               "target": "Package",
               "version": "[8.2.1, )"
             },
-            "NAudio": {
-              "target": "Package",
-              "version": "[2.2.1, )"
-            },
             "PortAudioSharp": {
               "target": "Package",
               "version": "[0.3.0, )"
@@ -96,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.414/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.121/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

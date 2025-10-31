@@ -7,6 +7,7 @@ using Avalonia.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using SpeechToTextApp.Services;
+using System.Collections.ObjectModel;
 
 namespace SpeechToTextApp.ViewModels
 {
@@ -23,6 +24,9 @@ namespace SpeechToTextApp.ViewModels
 
         private const string ModelPath = "model";
         private const string ModelUrl = "https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip";
+
+        public ObservableCollection<string> TranscriptEntries { get; } = new();
+        private string? _currentTranscriptFilePath;
 
         public MainWindowViewModel()
         {
@@ -95,6 +99,7 @@ namespace SpeechToTextApp.ViewModels
         private void StartListening()
         {
             if (_audioService == null) return;
+            EnsureTranscriptFile();
             _audioService.Start();
             IsListening = true;
         }
@@ -105,6 +110,14 @@ namespace SpeechToTextApp.ViewModels
             if (_audioService == null) return;
             _audioService.Stop();
             IsListening = false;
+            if (!string.IsNullOrEmpty(_currentTranscriptFilePath))
+            {
+                try
+                {
+                    File.AppendAllText(_currentTranscriptFilePath, $"--- Session ended {DateTime.Now:yyyy-MM-dd HH:mm:ss} ---{Environment.NewLine}");
+                }
+                catch { }
+            }
         }
 
         private void OnAudioDataAvailable(byte[] data)
@@ -113,12 +126,48 @@ namespace SpeechToTextApp.ViewModels
             _speechService.ProcessAudio(data);
         }
 
-        private void OnRecognitionResult(string result)
+        private void OnRecognitionResult(string result, bool isFinal)
         {
             Dispatcher.UIThread.Post(() =>
             {
                 RecognizedText = result;
+                if (isFinal)
+                {
+                    AppendTranscriptLine(result);
+                }
             });
+        }
+
+        private void EnsureTranscriptFile()
+        {
+            try
+            {
+                Directory.CreateDirectory("transcripts");
+                _currentTranscriptFilePath = Path.Combine("transcripts", $"transcript_{DateTime.Now:yyyyMMdd_HHmmss}.txt");
+                File.AppendAllText(_currentTranscriptFilePath, $"--- Session started {DateTime.Now:yyyy-MM-dd HH:mm:ss} ---{Environment.NewLine}");
+            }
+            catch (Exception e)
+            {
+                RecognizedText = $"Could not create transcript file: {e.Message}";
+            }
+        }
+
+        private void AppendTranscriptLine(string line)
+        {
+            if (string.IsNullOrWhiteSpace(line)) return;
+            TranscriptEntries.Add(line);
+
+            if (!string.IsNullOrEmpty(_currentTranscriptFilePath))
+            {
+                try
+                {
+                    File.AppendAllText(_currentTranscriptFilePath, line + Environment.NewLine);
+                }
+                catch (Exception e)
+                {
+                    RecognizedText = $"Error writing transcript: {e.Message}";
+                }
+            }
         }
     }
 }

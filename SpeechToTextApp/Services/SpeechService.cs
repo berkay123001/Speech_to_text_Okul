@@ -13,7 +13,7 @@ namespace SpeechToTextApp.Services
         private readonly VoskRecognizer _recognizer;
         private readonly Model _model;
 
-        public event Action<string>? RecognitionResult;
+        public event Action<string, bool>? RecognitionResult;
 
         /// <summary>
         /// Initializes the speech service by loading the Vosk model.
@@ -65,7 +65,7 @@ namespace SpeechToTextApp.Services
                     var text = textElement.GetString();
                     if (!string.IsNullOrEmpty(text))
                     {
-                        RecognitionResult?.Invoke(text);
+                        RecognitionResult?.Invoke(text, true);
                     }
                 }
                 else if (doc.RootElement.TryGetProperty("partial", out var partialElement))
@@ -73,7 +73,7 @@ namespace SpeechToTextApp.Services
                     var partialText = partialElement.GetString();
                     if (!string.IsNullOrEmpty(partialText))
                     {
-                        RecognitionResult?.Invoke(partialText);
+                        RecognitionResult?.Invoke(partialText, false);
                     }
                 }
             }

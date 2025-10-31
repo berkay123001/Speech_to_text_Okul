@@ -22,6 +22,17 @@
                        MinWidth="580"/>
         </ScrollViewer>
 
+        <TextBlock Text="Transcript:" FontWeight="Bold" FontSize="16" Margin="0,10,0,0"/>
+        <Border Width="600" Height="200" BorderBrush="Gray" BorderThickness="1" CornerRadius="4">
+            <ListBox ItemsSource="{Binding TranscriptEntries}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding .}" TextWrapping="Wrap" Margin="5"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+
         <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Center" Margin="0,10,0,0">
             <Button Content="🎙️ Start Listening"
                     Command="{Binding StartListeningCommand}"

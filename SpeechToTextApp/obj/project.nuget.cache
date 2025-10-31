@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "QSVnGeGBbLidCcllWQLcwFrtCjL0cgqjAlJ5ghGFpVt0Fx/y8BOlaSXGxrI+Fs47VpwErnhXGuiiFFy8YoRIDg==",
+  "dgSpecHash": "Q7vsLkg2xetIA8mke6Z75ss7BOAJFP3Qppmm84CcT7QZtC4EmkmfJUxeCCNyTo22qGrKgOq6emVY3eIrbGgs5w==",
   "success": true,
   "projectFilePath": "/home/berkayhsrt/SPEECH_TO_TEXT/Speech_to_text_Okul/SpeechToTextApp/SpeechToTextApp.csproj",
   "expectedPackageFiles": [
@@ -27,6 +27,7 @@
     "/home/berkayhsrt/.nuget/packages/harfbuzzsharp.nativeassets.win32/8.3.1.1/harfbuzzsharp.nativeassets.win32.8.3.1.1.nupkg.sha512",
     "/home/berkayhsrt/.nuget/packages/microcom.runtime/0.11.0/microcom.runtime.0.11.0.nupkg.sha512",
     "/home/berkayhsrt/.nuget/packages/microsoft.extensions.logging.abstractions/3.1.4/microsoft.extensions.logging.abstractions.3.1.4.nupkg.sha512",
+    "/home/berkayhsrt/.nuget/packages/microsoft.net.illink.tasks/8.0.21/microsoft.net.illink.tasks.8.0.21.nupkg.sha512",
     "/home/berkayhsrt/.nuget/packages/nativelibrarymanager/1.0.23/nativelibrarymanager.1.0.23.nupkg.sha512",
     "/home/berkayhsrt/.nuget/packages/portaudiosharp/0.3.0/portaudiosharp.0.3.0.nupkg.sha512",
     "/home/berkayhsrt/.nuget/packages/skiasharp/2.88.9/skiasharp.2.88.9.nupkg.sha512",
@@ -36,7 +37,10 @@
     "/home/berkayhsrt/.nuget/packages/skiasharp.nativeassets.win32/2.88.9/skiasharp.nativeassets.win32.2.88.9.nupkg.sha512",
     "/home/berkayhsrt/.nuget/packages/system.io.pipelines/8.0.0/system.io.pipelines.8.0.0.nupkg.sha512",
     "/home/berkayhsrt/.nuget/packages/tmds.dbus.protocol/0.21.2/tmds.dbus.protocol.0.21.2.nupkg.sha512",
-    "/home/berkayhsrt/.nuget/packages/vosk/0.3.38/vosk.0.3.38.nupkg.sha512"
+    "/home/berkayhsrt/.nuget/packages/vosk/0.3.38/vosk.0.3.38.nupkg.sha512",
+    "/home/berkayhsrt/.nuget/packages/microsoft.netcore.app.runtime.win-x64/8.0.21/microsoft.netcore.app.runtime.win-x64.8.0.21.nupkg.sha512",
+    "/home/berkayhsrt/.nuget/packages/microsoft.aspnetcore.app.runtime.win-x64/8.0.21/microsoft.aspnetcore.app.runtime.win-x64.8.0.21.nupkg.sha512",
+    "/home/berkayhsrt/.nuget/packages/microsoft.netcore.app.host.win-x64/8.0.21/microsoft.netcore.app.host.win-x64.8.0.21.nupkg.sha512"
   ],
   "logs": []
 }

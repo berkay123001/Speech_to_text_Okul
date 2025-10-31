@@ -23,7 +23,7 @@ namespace SpeechToTextApp.ViewModels
         private SpeechService? _speechService;
 
         private const string ModelPath = "model";
-        private const string ModelUrl = "https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip";
+        private const string ModelUrl = "https://alphacephei.com/vosk/models/vosk-model-small-tr-0.3.zip";
 
         public ObservableCollection<string> TranscriptEntries { get; } = new();
         private string? _currentTranscriptFilePath;

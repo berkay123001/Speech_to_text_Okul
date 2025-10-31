@@ -11,6 +11,8 @@ Basit, çevrimdışı çalışan bir Konuşmadan-Yazıya (Speech-to-Text) uygula
 - Transcript paneli: Son (final) tanınan cümleler ekranda listelenir.
 - Otomatik kayıt: Her dinleme seansı `transcripts/` klasöründe zaman damgalı `.txt` dosyasına kaydedilir.
 
+> Varsayılan model: Türkçe (Vosk small tr). İsterseniz `ViewModels/MainWindowViewModel.cs` içindeki `ModelUrl` değerini değiştirerek farklı bir model kullanabilirsiniz (örn. İngilizce).
+
 ## Prerequisites
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
@@ -51,6 +53,14 @@ dotnet publish -c Release -r win-x64 --self-contained true \
 
 Çıktı: `bin/Release/net8.0/win-x64/publish/` içinde `SpeechToTextApp.exe`.
 
+### Çalıştırma (Windows)
+- Dosyayı çift tıklayarak çalıştırın veya Komut İstemi'nde:
+  ```cmd
+  cd bin\Release\net8.0\win-x64\publish
+  SpeechToTextApp.exe
+  ```
+- İlk açılışta model indirileceği için internet ve yazma izni gerekir.
+
 Notlar:
 - İlk çalıştırmada model indirileceği için exe bulunduğu klasöre yazma izni olmalı.
 - Mikrofon erişimi için Windows'ta Sistem Ayarları > Gizlilik > Mikrofon bölümünden izin verdiğinizden emin olun.
@@ -59,5 +69,6 @@ Notlar:
 ## Troubleshooting
 
 - Model indirme başarısız: Ağ bağlantısını ve firewall ayarlarını kontrol edin.
-- Performans düşükse: Daha büyük/lokal dile uygun bir Vosk modeli kullanmayı düşünün (`model` klasörünü ilgili modelle değiştirin).
+- Performans düşükse: Daha büyük/lokal dile uygun bir Vosk modeli kullanmayı düşünün (`model` klasörünü uygun modelle değiştirin) veya `ModelUrl`'i değiştirip uygulamayı yeniden başlatın.
+- Windows Defender bazen tek dosya exe'lerde yanlış pozitif uyarı verebilir. Kaynağın size ait olduğundan emin olarak izin verin.
 - Mikrofon çalışmıyor: OS mikrofon izinleri ve input device ayarlarını kontrol edin.
